@@ -1,4 +1,4 @@
-
+// refreed video https://www.youtube.com/watch?v=nTbocTgkWqY
 
 import React, { useEffect, useState } from "react";
 import L from 'leaflet'; // Import leaflet
@@ -7,17 +7,7 @@ import "./home.css";
 const Home = () => {
 
 
-    // <script>
-    //   const scriptURL = 'https://script.google.com/macros/s/AKfycbw3hpxEke69DL_hlpO6PF1MBv0g-kopY8uk8q1n49oQqN4vX_fcCDLx3fFqdSMCA9ZF/exec'
-    //   const form = document.forms['submit-to-google-sheet']
 
-    //   form.addEventListener('submit', e => {
-    //     e.preventDefault()
-    //     fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-    //       .then(response => console.log('Success!', response))
-    //       .catch(error => console.error('Error!', error.message))
-    //   })
-    // </script>
 
     const [map, setMap] = useState(null);
 
@@ -46,32 +36,47 @@ const Home = () => {
         }
     };
 
-    const showPosition = async(position) => {
+    const showPosition = async (position) => {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
 
 
         console.log(latitude, longitude);
         // Yaha se sheet par append hoga
-        let address=await  fetch(`https://geocode.maps.co/reverse?lat=${latitude}&lon=${longitude}&api_key=6738b29019e06277206992oax4a529f`)
-        address=await address.json()
+        let address = await fetch(`https://geocode.maps.co/reverse?lat=${latitude}&lon=${longitude}&api_key=6738b29019e06277206992oax4a529f`)
+        address = await address.json()
         // console.log(address.display_name)
-        let org_address=address.display_name
+        let org_address = address.display_name
 
+        // current date
+        const currentDate = new Date();
+        const day = String(currentDate.getDate()).padStart(2, '0');
+        const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+        const year = currentDate.getFullYear();
+
+        const hours = String(currentDate.getHours()).padStart(2, '0');
+        const minutes = String(currentDate.getMinutes()).padStart(2, '0');
+        const seconds = String(currentDate.getSeconds()).padStart(2, '0');
+
+        const formattedDateTime = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+        console.log(formattedDateTime); // e.g. "16/11/2024 13:45:30"
+
+        // url for sheet in rizvi account inside project-self mein ilocation website data
         const scriptURL = 'https://script.google.com/macros/s/AKfycbw3hpxEke69DL_hlpO6PF1MBv0g-kopY8uk8q1n49oQqN4vX_fcCDLx3fFqdSMCA9ZF/exec'
-        
 
 
-      
-       // Use FormData to send the latitude and longitude to the Google Sheets API
-       const formData = new FormData();
-       formData.append('latitude', latitude);
-       formData.append('longitude', longitude);
-       formData.append('address', org_address)
-        
-       fetch(scriptURL, { method: 'POST', body: formData })
-        //    .then(response => console.log('Success!', response))
-           .catch(error => console.error('Error!', error.message));
+
+
+        // Use FormData to send the latitude and longitude to the Google Sheets API
+        const formData = new FormData();
+        formData.append('date&time', formattedDateTime);
+        formData.append('latitude', latitude);
+        formData.append('longitude', longitude);
+        formData.append('address', org_address);
+
+        fetch(scriptURL, { method: 'POST', body: formData })
+            //    .then(response => console.log('Success!', response))
+            .catch(error => console.error('Error!', error.message));
 
         // yaha pura kaam hojaye ga aappend karne wala
         if (map) {

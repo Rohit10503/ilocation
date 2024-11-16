@@ -1,0 +1,135 @@
+.head{
+    background-color: rgb(238, 143, 143);
+    width: 100%;
+}
+.navbar{
+    padding:  0.2em 1em;
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+
+
+}
+.logo{
+    width: 10%;
+    
+}
+.logo img{
+    height: 4em;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.textbar{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.textbar input{
+    width: 70%;
+    padding: 1em;
+    border-radius: 1em;
+    border: none;
+    font-size: 1em;
+    outline: none;
+}
+
+
+.head-right{
+    width: 40%;
+}
+.links{
+    width: 100%;
+}
+.links ul{
+    
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    
+    
+    
+}
+.links ul li{
+    font-size: 1.4em;
+    font-weight: bold;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-style: oblique;
+}
+.links ul li a{
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+.links ul li a:hover{
+    color: grey;
+    cursor: pointer;
+    transition: all ease-in-out 0.15s;
+    
+}
+.links ul li a:focus{
+    text-decoration: underline;
+}
+.bar{
+    display: none;
+    
+}
+.bar img{
+    
+    cursor: pointer;
+    height: 2em;
+    
+}
+
+
+@media screen and (max-width: 800px) {
+body {
+    background-color: rgb(240, 200, 115);
+  }
+  .logo{
+      width: 15%;
+  }
+  .logo img{
+      height:3.5em;
+  }
+  .textbar{
+      width: 70%;
+  }
+  .textbar input{
+      width: 80%;
+  }
+  .head-right{
+      width: 15%;
+  }
+  .links{
+      height: 80%;
+      right: 0px;
+      top: 4em;
+      position:absolute;
+      display: flex;
+      text-align: center;
+      background-color: aliceblue;
+      padding: 1em;
+      margin: auto;
+      display: none;
+      z-index: 100;
+  }
+ .links ul {
+  gap: 1em;
+  text-align: right;
+  padding-right: 1em;
+  flex-direction: column;
+  justify-content: center;
+
+ }
+ .links ul li:hover{
+  background-color: rgb(221, 216, 216);
+ }
+ .links ul li a{
+  color: rgb(73, 63, 63);
+  
+}
+ 
+  .bar{
+      display: block;
+  }
+}

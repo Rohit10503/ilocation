@@ -10,6 +10,8 @@ const Home = () => {
 
 
     const [map, setMap] = useState(null);
+    const [locationInterval, setLocationInterval] = useState(null);
+
 
     // Initialize the map when the component mounts
     useEffect(() => {
@@ -21,6 +23,9 @@ const Home = () => {
 
         return () => {
             mapInstance.remove(); // Clean up the map instance on component unmount
+            if (locationInterval) {
+                clearInterval(locationInterval); // Clear the interval on unmount
+            }
         };
     }, []);
 
@@ -61,7 +66,7 @@ const Home = () => {
         const formattedDateTime = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
         console.log(formattedDateTime); // e.g. "16/11/2024 13:45:30"
 
-        // url for sheet in rizvi account inside project-self mein ilocation website data
+        // url for sheet in rizvi account inside project mein ilocation website data
         const scriptURL = 'https://script.google.com/macros/s/AKfycbw3hpxEke69DL_hlpO6PF1MBv0g-kopY8uk8q1n49oQqN4vX_fcCDLx3fFqdSMCA9ZF/exec'
 
 
@@ -110,6 +115,23 @@ const Home = () => {
         }
     };
 
+
+
+    // Start the 5-minute interval when the user clicks the button
+    const startTracking = () => {
+        // If an interval is already running, clear it first
+        if (locationInterval) {
+            clearInterval(locationInterval);
+        }
+
+        // Get location initially
+        getUserLocation();
+
+        // Set interval to get location every 5 minutes (300000 ms)
+        const intervalId = setInterval(getUserLocation, 60000); // 5 minutes in ms 300000
+        setLocationInterval(intervalId);
+    };
+
     return (
         <section>
             <div className="main-body">
@@ -121,7 +143,7 @@ const Home = () => {
                     <div id="map" style={{ height: '340px', zIndex: 0 }}></div>
                 </div>
                 <div className="btn-section">
-                    <button className="map-btn" onClick={getUserLocation}>Get Location</button>
+                    <button className="map-btn" onClick={startTracking}>Get Location</button>
                 </div>
 
             </div>

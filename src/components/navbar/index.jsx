@@ -7,7 +7,7 @@ const Navbar=()=>{
         if(x.style.display === "block"){
             x.style.display="none"
             
-            document.getElementById("sidebar").src="https://cdn.icon-icons.com/icons2/2090/PNG/512/hide_sidebar_horizontal_icon_128227.png"
+            document.getElementById("sidebar").src="https://static-00.iconduck.com/assets.00/sidebar-left-icon-256x255-buemsywp.png"
         }
         else{
             x.style.display="block"

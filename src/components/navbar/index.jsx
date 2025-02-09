@@ -26,7 +26,7 @@ const Navbar=()=>{
                 <div class="textbar"><input type="text" class="text" placeholder="Try something new..." /></div>
                 <div class="head-right">
                     <div class="bar"><img onClick={myfunction} id="sidebar" class="sidebar"
-                            src="https://cdn.icon-icons.com/icons2/2090/PNG/512/hide_sidebar_horizontal_icon_128227.png"
+                            src="https://static-00.iconduck.com/assets.00/sidebar-left-icon-256x255-buemsywp.png"
                             alt=""/></div>
                     <div class="links" id="links">
                         <ul>
